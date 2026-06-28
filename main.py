@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from db.connection import init_db_pool, close_db_pool
-from routers import documents, query
+from routers import documents, conversations 
 
 
 @asynccontextmanager
@@ -24,7 +24,7 @@ app.add_middleware(
 )
 
 app.include_router(documents.router)
-app.include_router(query.router)
+#app.include_router(query.router)
 app.include_router(conversations.router) 
 
 @app.get("/")

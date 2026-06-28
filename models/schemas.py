@@ -30,8 +30,6 @@ class ConversationCreate(BaseModel): #client sends this when creating a new conv
     document_id: UUID
     title: Optional[str] = None 
 
-class ConversationDetail(ConversationMetadata): #Complete view of all the mssages from a conversation.
-    messages: list[MessageHistory] = []
 
 class ConversationMetadata(BaseModel): #response when querying a conversation
     id: UUID
@@ -39,7 +37,9 @@ class ConversationMetadata(BaseModel): #response when querying a conversation
     title: Optional[str]
     created_at: datetime
 
-
+class ConversationDetail(ConversationMetadata): #Complete view of all the mssages from a conversation.
+    messages: list[MessageHistory] = []
+    
 # ============================================
 #  QUERY
 # ============================================
