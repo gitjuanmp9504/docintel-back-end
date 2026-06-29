@@ -25,7 +25,7 @@ async def create_document(filename: str, file_bytes: bytes) -> dict:
 async def list_documents() -> list[dict]:
     pool = get_pool()
     query = """
-        SELECT id, filename, status
+        SELECT id, filename, page_count, status, uploaded_at
         FROM documents
         ORDER BY uploaded_at DESC
     """
