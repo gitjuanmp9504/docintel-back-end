@@ -1,6 +1,7 @@
 import asyncpg
 import os
 from dotenv import load_dotenv
+from pgvector.asyncpg import register_vector
 
 load_dotenv()
 
@@ -15,6 +16,7 @@ async def init_db_pool():
         dsn=DATABASE_URL,
         min_size=2,
         max_size=10,
+        init=register_vector,
     )
     return _pool
 
