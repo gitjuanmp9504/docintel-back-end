@@ -25,7 +25,7 @@ async def create_document(filename: str, file_bytes: bytes) -> dict:
     row = await pool.fetchrow(query, filename, storage_path)
     document = dict(row)
 
-    await process_document(document["id"], file_bytes)
+    #await process_document(document["id"], file_bytes)
 
     return document
 

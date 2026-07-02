@@ -46,6 +46,7 @@ class ConversationDetail(ConversationMetadata): #Complete view of all the mssage
 
 class QueryRequest(BaseModel): #client sends this when asking a question in a conversation
     conversation_id: UUID
+    document_id: UUID
     question: str
     top_k: int = Field(default=5, ge=1, le=20)  # entre 1 y 20, default 5
 
@@ -76,3 +77,4 @@ class MessageHistory(BaseModel):
     content: str
     citations: Optional[list[Citation]] = None
     created_at: datetime
+

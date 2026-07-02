@@ -7,6 +7,8 @@ from models.schemas import (
     ConversationMetadata,
     ConversationDetail,
     MessageHistory,
+    QueryRequest,
+    QueryResponse
 )
 from services import conversations as conversation_service
 
@@ -21,6 +23,14 @@ async def create_conversation(payload: ConversationCreate):
     )
     return ConversationMetadata(**conversation)
 
+@router.post("/{conversation_id}/messages", response_model=QueryResponse)
+async def create_message(conversation_id: UUID, payload: QueryRequest):
+    message = await conversation_service.create_message(
+        conversation_id=conversation_id,
+        document_id=payload.document_id,
+        question= payload.content,
+    )
+    return QueryResponse(**message)
 
 @router.get("/", response_model=list[ConversationMetadata])
 async def list_conversations():
